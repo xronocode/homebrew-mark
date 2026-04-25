@@ -1,19 +1,19 @@
 cask "mark" do
-  version "1.0.0"
+  version "1.0.1"
 
   on_arm do
-    sha256 "f80a072cb81a5ae258d047425f170167151c1e8d86ede64ac8f67baf8c687bd2"
+    sha256 "b3be8f762c8cddcf1e5c2240fbf48f64e094806af3beb7d9c45668eb206acff2"
 
     url "https://github.com/xronocode/mark/releases/download/v#{version}/mark-mac-arm64-#{version}.dmg",
         verified: "github.com/xronocode/mark/"
   end
 
   on_intel do
-    # Intel macOS support is deferred to v1.0.1 — the v1.0.0 CI run produced
-    # an x64 DMG with arm64 native modules (cross-built on Apple Silicon
-    # runner; macos-13 runner queue never freed during the release window).
-    # See https://github.com/xronocode/mark/issues for status.
-    odie "Mark v#{version} ships Apple Silicon only. Intel builds coming in v1.0.1."
+    # Intel macOS still pending — the macos-13 GitHub Actions runner remains
+    # queue-bound during release windows, and the macos-14 cross-build
+    # produces an x64 DMG with arm64 native modules (broken on Intel).
+    # Tracking in https://github.com/xronocode/mark/issues.
+    odie "Mark v#{version} ships Apple Silicon only. Intel builds coming in a follow-up release."
   end
 
   name "Mark"
