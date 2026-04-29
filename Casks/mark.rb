@@ -1,8 +1,8 @@
 cask "mark" do
-  version "1.1.0"
+  version "1.2.3"
 
   on_arm do
-    sha256 "f7d94f8c0882754c50266d5adacf4ebbead9e6ba1e2056dff60e65a0cd8032e2"
+    sha256 "46988bbadda575c8f755c7b70ff49e19644000d60f19299cdaec16feede929ff"
 
     url "https://github.com/xronocode/mark/releases/download/v#{version}/mark-mac-arm64-#{version}.dmg",
         verified: "github.com/xronocode/mark/"
@@ -20,9 +20,20 @@ cask "mark" do
   desc "Lightweight Markdown editor — modernized fork of MarkText with Russian support"
   homepage "https://github.com/xronocode/mark"
 
+  # Phase A frozen at v1.2.3. This is the LAST Electron-engine release of
+  # Mark — Phase B ships as a separate Tauri-engine binary on the
+  # `mark@alpha` cask (read-only legacy preferences; no auto-update).
+  # When Phase B v2.0 stable cuts, this cask gets a `mark@v1` rename
+  # for the 12-month maintenance window per dev-plan B3a step-4.
+  #
+  # livecheck stays bounded by `v1.*` tag prefix so a v2.* GitHub
+  # Release doesn't accidentally upgrade Electron users to Tauri.
   livecheck do
     url :url
-    strategy :github_latest
+    strategy :github_latest do |json|
+      tag = json["tag_name"]
+      tag.start_with?("v1.") ? tag.delete_prefix("v") : nil
+    end
   end
 
   auto_updates false
