@@ -1,29 +1,24 @@
 cask "mark@alpha" do
   # Phase-B Tauri rewrite — alpha channel.
   #
-  # ⚠ ALPHA: this build does NOT yet ship a fully wired Vue editor shell.
-  # The bundled binary boots, runs the M-001 boot guards (panic hook,
-  # security audit, fixture validation), and opens a window with the
-  # muya bench harness. Real editor functionality (sidebar, tabs,
-  # source-code mode) lands when F-MAIN-ENTRY-DISABLED is closed in
-  # a Phase-B3a follow-up.
+  # ALPHA: usable for routine writing on macOS Apple Silicon — that's how
+  # it's developed. Known gaps tracked in docs/development-plan.xml
+  # followup index. For a frozen Electron-engine alternative, install
+  # `mark` (Phase A v1.2.x) instead.
   #
-  # WHO SHOULD INSTALL: maintainers + early adopters who want to track
-  # the Tauri rewrite progress. Not for daily-driver use.
-  # WHO SHOULD NOT: anyone whose Mark workflow depends on actually
-  # opening + saving Markdown files. Stay on `mark` (v1.2.x Electron)
-  # until v2.0 stable.
-  #
-  # Pinned to a draft version — when the alpha actually publishes a
-  # tag, the version string + sha256 update here. Until then the cask
-  # is a skeleton; `brew install --cask mark@alpha` will fail with a
-  # helpful odie until the first alpha release lands.
+  # WHO SHOULD INSTALL: Apple Silicon users wanting the lightweight
+  # Tauri rewrite (~25 MB binary, sub-second cold start). Cross-window
+  # prefs broadcast, file watcher, dirty-tab close prompt, native menu,
+  # global shortcut, Mermaid v11 / KaTeX / Vega diagrams all work.
+  # WHO SHOULD NOT: anyone who needs Cmd+F in-file find, in-folder
+  # ripgrep search, or Linux/Windows builds — those are deferred to
+  # beta. Stay on `mark` (v1.2.x) for those.
 
-  version "0.0.1-alpha.1"
+  version "2.0.0-alpha.1"
+  sha256 "59b487384fc6f609406fbddd65d802588fc76f0317264652b451966d5d250d33"
 
   on_arm do
-    sha256 :no_check
-    url "https://github.com/xronocode/mark/releases/download/v#{version}/mark-mac-arm64-#{version}.dmg",
+    url "https://github.com/xronocode/mark/releases/download/v#{version}/Mark_#{version}_aarch64.dmg",
         verified: "github.com/xronocode/mark/"
   end
 
@@ -53,37 +48,41 @@ cask "mark@alpha" do
 
   app "Mark.app", target: "Mark Alpha.app"
 
-  # Phase-B3a step-6: alpha cask postinstall message.
   caveats <<~EOS
-    ⚠ ALPHA channel — preview build of the Mark Tauri rewrite.
+    Mark v2.0.0-alpha.1 — Tauri rewrite preview build.
 
-    What works:
-      - App boots; M-001 boot guards (panic hook, security audit,
-        IPC contract validation) run cleanly.
-      - Bench harness window renders muya markdown.
+    What works (alpha):
+      - WYSIWYG markdown editing (muya engine), multi-tab, save/save-as
+      - Open Folder + sidebar tree, external-edit live reload
+      - Cross-window preference broadcast (Settings <-> Editor)
+      - Theme switching (light/dark/sepia + 15 named palettes)
+      - Native macOS menu, global shortcut Cmd+Shift+M
+      - Dirty-tab close prompt (Cmd+W on unsaved file)
+      - Mermaid v11 / KaTeX / Vega diagrams, table editor
+      - Spell-check via NSSpellChecker
+      - Auto-import of preferences from Mark Text v1.2.x (silent on
+        first launch — no dialog)
+      - Auto-update via Homebrew: `brew upgrade --cask mark@alpha`
 
-    What doesn't work yet:
-      - Editor sidebar, tabs, source-code mode — wired in B3a follow-up
-        (F-MAIN-ENTRY-DISABLED resolves this).
-      - File open / save end-to-end — backend modules ready
-        (M-002/003/004); renderer wiring pending.
-      - Auto-updates — feed not configured; `Check for Updates` is a
-        stub until B4 ships dual-pubkey signing infra.
+    Deferred to beta:
+      - Cmd+F in-file find, in-folder ripgrep search
+      - Print to PDF (works only if Pandoc on PATH)
+      - Linux / Windows builds
 
-    Preferences:
-      - Stored at ~/Library/Application Support/com.xronocode.mark/
-        preferences.json with mt_migration.app_version="alpha".
-      - Treated as READ-ONLY for legacy v1.2.x prefs; alpha does NOT
-        currently migrate v1's preferences.json / dataCenter.json /
-        keybindings.json / recently-used-documents.json
-        (F-PREFS-MIGRATE-V1 tracks the full migration).
+    Out of scope: plugin marketplace.
 
-    To migrate to stable v2 when it ships:
+    Preferences storage:
+      ~/Library/Application Support/com.xronocode.mark/preferences.json
+    Original Mark Text v1.x data at
+      ~/Library/Application Support/marktext
+    is read-only for the migrator and stays untouched.
+
+    To roll forward when v2.0 stable ships:
       brew uninstall --cask mark@alpha
-      brew install --cask mark   # rolls forward via livecheck
+      brew install --cask mark   # picks up the v2.0 tag via livecheck
 
     Bug reports: https://github.com/xronocode/mark/issues
-    Tag with `alpha` label.
+    Sponsor:     https://ko-fi.com/xronocode
   EOS
 
   postflight do
