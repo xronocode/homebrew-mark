@@ -1,9 +1,12 @@
 # homebrew-mark
 
+[![ko-fi](https://img.shields.io/badge/ko--fi-support-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/xronocode)
+
 Homebrew tap for [Mark](https://github.com/xronocode/mark) — a modernized
 fork of [marktext/marktext](https://github.com/marktext/marktext) tracking
 [Tkaixiang/marktext](https://github.com/Tkaixiang/marktext) upstream, with
-Russian localization and ad-hoc macOS signing.
+Russian localization, ad-hoc macOS signing, and a from-scratch Tauri 2
+rewrite (Phase B) shipping alongside the polished Electron build (Phase A).
 
 ## Channels
 
@@ -109,3 +112,15 @@ The Tauri build pipeline (reborn-mark) emits Mark.app + .dmg via
    real release.
 4. `brew style --cask Casks/mark@alpha.rb` to lint.
 5. Commit and push.
+
+## Support the project
+
+Mark is built on personal time. If the tap saves you a `sudo xattr`
+dance, consider buying me a coffee — it goes directly into more polish
+work on both engines.
+
+<p align="left">
+  <a href="https://ko-fi.com/xronocode" target="_blank">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Buy Me a Coffee at ko-fi.com" />
+  </a>
+</p>
