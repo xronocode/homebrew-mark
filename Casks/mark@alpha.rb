@@ -49,7 +49,7 @@ cask "mark@alpha" do
   app "Mark.app", target: "Mark Alpha.app"
 
   caveats <<~EOS
-    Mark v2.0.0-alpha.1 — Tauri rewrite preview build.
+    Mark v#{version} — Tauri rewrite preview build.
 
     What works (alpha):
       - WYSIWYG markdown editing (muya engine), multi-tab, save/save-as
