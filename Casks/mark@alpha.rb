@@ -14,8 +14,8 @@ cask "mark@alpha" do
   # ripgrep search, or Linux/Windows builds — those are deferred to
   # beta. Stay on `mark` (v1.2.x) for those.
 
-  version "2.0.0-alpha.3"
-  sha256 "e865a309cf74f5d5dec44bba5a6dc486d64970de1d480eb7e0b9b9e4f719c8d3"
+  version "2.0.0-alpha.4"
+  sha256 "f44da6918d29e4868ce391b65164819a95f479aad22b33cf356dee760963de08"
 
   on_arm do
     url "https://github.com/xronocode/mark/releases/download/v#{version}/Mark_#{version}_aarch64.dmg",
