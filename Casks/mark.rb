@@ -1,8 +1,8 @@
 cask "mark" do
-  version "1.2.3"
+  version "2.0.0-alpha.4"
 
   on_arm do
-    sha256 "46988bbadda575c8f755c7b70ff49e19644000d60f19299cdaec16feede929ff"
+    sha256 "f44da6918d29e4868ce391b65164819a95f479aad22b33cf356dee760963de08"
 
     url "https://github.com/xronocode/mark/releases/download/v#{version}/mark-mac-arm64-#{version}.dmg",
         verified: "github.com/xronocode/mark/"
