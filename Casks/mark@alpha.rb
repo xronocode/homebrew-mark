@@ -14,8 +14,8 @@ cask "mark@alpha" do
   # ripgrep search, or Linux/Windows builds — those are deferred to
   # beta. Stay on `mark` (v1.2.x) for those.
 
-  version "2.0.0-alpha.6"
-  sha256 "aa7a3f86bc2e2dad1025b04a417aca8c96a23f19278ce89074810ab090436b2f"
+  version "2.0.0-alpha.6.1"
+  sha256 "3e7d1bd9125e466f9dd7f0d9a601cd91793f31b92c17a8fba0a8649bb213fc44"
 
   on_arm do
     url "https://github.com/xronocode/mark/releases/download/v#{version}/Mark_#{version}_aarch64.dmg",
@@ -26,8 +26,8 @@ cask "mark@alpha" do
     odie "Mark Tauri alpha ships Apple Silicon only. Intel users stay on `mark` (v1.2.x Electron) — universal binary is a v2.1+ goal per dev-plan B3a step-10."
   end
 
-  name "Mark (Tauri alpha)"
-  desc "Mark v2 Tauri-engine alpha — preview the rewrite; not for daily use"
+  name "Mark"
+  desc "Mark — lightweight WYSIWYG Markdown editor (v2 Tauri alpha channel)"
   homepage "https://github.com/xronocode/mark"
 
   # livecheck restricted to v2.*-alpha.* tags so a v2.0 stable doesn't
@@ -46,7 +46,7 @@ cask "mark@alpha" do
   auto_updates false
   depends_on macos: ">= :big_sur"
 
-  app "Mark.app", target: "Mark Alpha.app"
+  app "Mark.app"
 
   caveats <<~EOS
     Mark v#{version} — Tauri rewrite preview build.
@@ -87,7 +87,7 @@ cask "mark@alpha" do
 
   postflight do
     system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/Mark Alpha.app"],
+                   args: ["-cr", "#{appdir}/Mark.app"],
                    sudo: false
   end
 
