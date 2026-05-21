@@ -15,7 +15,7 @@ cask "mark@alpha" do
   # beta. Stay on `mark` (v1.2.x) for those.
 
   version "2.0.0-alpha.7"
-  sha256 "99aabd799315899f5dce9785f507a98d15f7a724b9241cf16386f53c860f3ac6"
+  sha256 "3d5bfd47f2f9874de61fab99fc785a1ab7a0e9c8c4c3d402b1d27d692db42cee"
 
   on_arm do
     url "https://github.com/xronocode/mark/releases/download/v#{version}/Mark_#{version}_aarch64.dmg",
