@@ -10,12 +10,11 @@ cask "mark@alpha" do
   # Tauri rewrite (~25 MB binary, sub-second cold start). Cross-window
   # prefs broadcast, file watcher, dirty-tab close prompt, native menu,
   # global shortcut, Mermaid v11 / KaTeX / Vega diagrams all work.
-  # WHO SHOULD NOT: anyone who needs Cmd+F in-file find, in-folder
-  # ripgrep search, or Linux/Windows builds — those are deferred to
-  # beta. Stay on `mark` (v1.2.x) for those.
+  # WHO SHOULD NOT: anyone who needs Linux/Windows builds — those are
+  # deferred to beta. Stay on `mark` (v1.2.x) for those.
 
-  version "2.0.0-alpha.7"
-  sha256 "ba7bff53fd69cc39b62ad683c34bbde5545412f070316c938dcea4365ecb204c"
+  version "2.0.0-alpha.9"
+  sha256 "1c5490fc84bab13080bed199a2eb7df85c2274de4ebde0599485cbb0ce332fe2"
 
   on_arm do
     url "https://github.com/xronocode/mark/releases/download/v#{version}/Mark_#{version}_aarch64.dmg",
@@ -54,19 +53,22 @@ cask "mark@alpha" do
     What works (alpha):
       - WYSIWYG markdown editing (muya engine), multi-tab, save/save-as
       - Open Folder + sidebar tree, external-edit live reload
+      - File rename, file move, print (Cmd+P), export as HTML
       - Cross-window preference broadcast (Settings <-> Editor)
-      - Theme switching (light/dark/sepia + 15 named palettes)
+      - 33 themes + custom CSS, View → Theme submenu
       - Native macOS menu, global shortcut Cmd+Shift+M
+      - Trackpad pinch-to-zoom, window geometry persistence
       - Dirty-tab close prompt (Cmd+W on unsaved file)
       - Mermaid v11 / KaTeX / Vega diagrams, table editor
+      - Inline diff view (CodeMirror MergeView)
+      - Find in file (Cmd+F), find in folder (ripgrep)
       - Spell-check via NSSpellChecker
-      - Auto-import of preferences from Mark Text v1.2.x (silent on
-        first launch — no dialog)
+      - Image clipboard paste, drag-and-drop, path autocomplete
+      - Auto-import of preferences from Mark Text v1.2.x
       - Auto-update via Homebrew: `brew upgrade --cask mark@alpha`
 
     Deferred to beta:
-      - Cmd+F in-file find, in-folder ripgrep search
-      - Print to PDF (works only if Pandoc on PATH)
+      - PDF export (planned via pandoc integration)
       - Linux / Windows builds
 
     Out of scope: plugin marketplace.
