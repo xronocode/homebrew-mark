@@ -13,8 +13,8 @@ cask "mark@alpha" do
   # WHO SHOULD NOT: anyone who needs Linux/Windows builds — those are
   # deferred to beta. Stay on `mark` (v1.2.x) for those.
 
-  version "2.0.0-alpha.9"
-  sha256 "1c5490fc84bab13080bed199a2eb7df85c2274de4ebde0599485cbb0ce332fe2"
+  version "2.0.1-alpha.1"
+  sha256 "001f2abe4c05e39064391d0dbeaf82fb0f80d7fc03fb95e1adc25287874ceb19"
 
   on_arm do
     url "https://github.com/xronocode/mark/releases/download/v#{version}/Mark_#{version}_aarch64.dmg",
@@ -64,6 +64,7 @@ cask "mark@alpha" do
       - Find in file (Cmd+F), find in folder (ripgrep)
       - Spell-check via NSSpellChecker
       - Image clipboard paste, drag-and-drop, path autocomplete
+      - Welcome screen with recent files and session restore
       - Auto-import of preferences from Mark Text v1.2.x
       - Auto-update via Homebrew: `brew upgrade --cask mark@alpha`
 
