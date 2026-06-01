@@ -13,8 +13,8 @@ cask "mark@alpha" do
   # WHO SHOULD NOT: anyone who needs Linux/Windows builds — those are
   # deferred to beta. Stay on `mark` (v1.2.x) for those.
 
-  version "2.0.1-alpha.1"
-  sha256 "001f2abe4c05e39064391d0dbeaf82fb0f80d7fc03fb95e1adc25287874ceb19"
+  version "2.0.2-alpha"
+  sha256 "ac4257c21f7e3d1e6fa2eb38dae65a6e2895ca8057fc3b7f9b2d068b8486141e"
 
   on_arm do
     url "https://github.com/xronocode/mark/releases/download/v#{version}/Mark_#{version}_aarch64.dmg",
@@ -60,7 +60,9 @@ cask "mark@alpha" do
       - Trackpad pinch-to-zoom, window geometry persistence
       - Dirty-tab close prompt (Cmd+W on unsaved file)
       - Mermaid v11 / KaTeX / Vega diagrams, table editor
-      - Inline diff view (CodeMirror MergeView)
+      - Inline diff view (CodeMirror MergeView), auto-detect .before sidecar
+      - CLI: mark --preview, --watch, --diff for agent workflows
+      - Save All, PDF export (via pandoc), line ending LF/CRLF control
       - Find in file (Cmd+F), find in folder (ripgrep)
       - Spell-check via NSSpellChecker
       - Image clipboard paste, drag-and-drop, path autocomplete
@@ -69,7 +71,6 @@ cask "mark@alpha" do
       - Auto-update via Homebrew: `brew upgrade --cask mark@alpha`
 
     Deferred to beta:
-      - PDF export (planned via pandoc integration)
       - Linux / Windows builds
 
     Out of scope: plugin marketplace.
