@@ -13,8 +13,8 @@ cask "mark@alpha" do
   # WHO SHOULD NOT: anyone who needs Linux/Windows builds — those are
   # deferred to beta. Stay on `mark` (v1.2.x) for those.
 
-  version "2.0.2-alpha"
-  sha256 "ac4257c21f7e3d1e6fa2eb38dae65a6e2895ca8057fc3b7f9b2d068b8486141e"
+  version "2.0.4-alpha"
+  sha256 "70f0faad89bb65b8d1599b4506213ad041f236d279efe9bf17e4014ef42bed0b"
 
   on_arm do
     url "https://github.com/xronocode/mark/releases/download/v#{version}/Mark_#{version}_aarch64.dmg",
@@ -89,11 +89,7 @@ cask "mark@alpha" do
     Sponsor:     https://ko-fi.com/xronocode
   EOS
 
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/Mark.app"],
-                   sudo: false
-  end
+  # Developer ID signed + Apple notarized — no xattr needed.
 
   zap trash: [
     "~/Library/Application Support/com.xronocode.mark",
