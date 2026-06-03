@@ -13,8 +13,8 @@ cask "mark@alpha" do
   # WHO SHOULD NOT: anyone who needs Linux/Windows builds — those are
   # deferred to beta. Stay on `mark` (v1.2.x) for those.
 
-  version "2.0.4-alpha"
-  sha256 "70f0faad89bb65b8d1599b4506213ad041f236d279efe9bf17e4014ef42bed0b"
+  version "2.0.5-alpha"
+  sha256 "e5af248f6b2ffeab2ce45b62ecbd3d9ed964bc057b798b3314401df0b2a48519"
 
   on_arm do
     url "https://github.com/xronocode/mark/releases/download/v#{version}/Mark_#{version}_aarch64.dmg",
