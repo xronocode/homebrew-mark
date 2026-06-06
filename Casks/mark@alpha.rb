@@ -13,8 +13,8 @@ cask "mark@alpha" do
   # WHO SHOULD NOT: anyone who needs Linux/Windows builds — those are
   # deferred to beta. Stay on `mark` (v1.2.x) for those.
 
-  version "2.0.5-alpha"
-  sha256 "e5af248f6b2ffeab2ce45b62ecbd3d9ed964bc057b798b3314401df0b2a48519"
+  version "2.0.6-alpha"
+  sha256 "7aaccb508d017732c6eb959cbc79bba3e442bcefd619bf60b474af24e4d221d1"
 
   on_arm do
     url "https://github.com/xronocode/mark/releases/download/v#{version}/Mark_#{version}_aarch64.dmg",
@@ -65,6 +65,7 @@ cask "mark@alpha" do
       - Save All, PDF export (via pandoc), line ending LF/CRLF control
       - Find in file (Cmd+F), find in folder (ripgrep)
       - Spell-check via NSSpellChecker
+      - macOS Share sheet (toolbar button + File > Share…)
       - Image clipboard paste, drag-and-drop, path autocomplete
       - Welcome screen with recent files and session restore
       - Auto-import of preferences from Mark Text v1.2.x
