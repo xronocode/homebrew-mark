@@ -1,8 +1,8 @@
 cask "mark" do
-  version "2.1.1-beta"
+  version "2.1.2-beta"
 
   on_arm do
-    sha256 "fd2afb43b83725e68c973559b5035dd561da10e7ede0b31171d98ec34495887f"
+    sha256 "1ba25b7cf8558690e08dc77f7dba38e0dba4c6d10a7645a11a605ddb28e58a53"
 
     url "https://github.com/xronocode/mark/releases/download/v#{version}/Mark_#{version}_aarch64.dmg",
         verified: "github.com/xronocode/mark/"
