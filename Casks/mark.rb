@@ -1,13 +1,12 @@
 cask "mark" do
-  version "1.2.3"
+  version "2.1.1-beta"
 
   on_arm do
-    sha256 "46988bbadda575c8f755c7b70ff49e19644000d60f19299cdaec16feede929ff"
+    sha256 "fd2afb43b83725e68c973559b5035dd561da10e7ede0b31171d98ec34495887f"
 
-    url "https://github.com/xronocode/mark/releases/download/v#{version}/mark-mac-arm64-#{version}.dmg",
+    url "https://github.com/xronocode/mark/releases/download/v#{version}/Mark_#{version}_aarch64.dmg",
         verified: "github.com/xronocode/mark/"
   end
-
   on_intel do
     # Intel macOS still pending — the macos-13 GitHub Actions runner remains
     # queue-bound during release windows, and the macos-14 cross-build
@@ -17,43 +16,24 @@ cask "mark" do
   end
 
   name "Mark"
-  desc "Lightweight Markdown editor — modernized fork of MarkText with Russian support"
+  desc "Lightweight WYSIWYG Markdown editor powered by Tauri"
   homepage "https://github.com/xronocode/mark"
 
-  # Phase A frozen at v1.2.3. This is the LAST Electron-engine release of
-  # Mark — Phase B ships as a separate Tauri-engine binary on the
-  # `mark@alpha` cask (read-only legacy preferences; no auto-update).
-  # When Phase B v2.0 stable cuts, this cask gets a `mark@v1` rename
-  # for the 12-month maintenance window per dev-plan B3a step-4.
-  #
-  # livecheck stays bounded by `v1.*` tag prefix so a v2.* GitHub
-  # Release doesn't accidentally upgrade Electron users to Tauri.
-  livecheck do
-    url :url
-    strategy :github_latest do |json|
-      tag = json["tag_name"]
-      tag.start_with?("v1.") ? tag.delete_prefix("v") : nil
-    end
-  end
+  # Version and checksum updates are opened by Mark's protected release
+  # workflow. GitHub's latest endpoint intentionally omits beta prereleases.
 
   auto_updates false
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "Mark.app"
 
-  # Mark releases are ad-hoc signed (codesign --sign -) but not Apple-notarized.
-  # Strip the quarantine attribute on first install so Gatekeeper accepts the
-  # ad-hoc signature without prompting.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/Mark.app"],
-                   sudo: false
-  end
+  # Developer ID signed and Apple notarized; no quarantine workaround needed.
 
   zap trash: [
-    "~/Library/Application Support/mark",
+    "~/Library/Application Support/com.xronocode.mark",
+    "~/Library/Caches/com.xronocode.mark",
+    "~/Library/Logs/Mark",
     "~/Library/Preferences/com.xronocode.mark.plist",
     "~/Library/Saved Application State/com.xronocode.mark.savedState",
-    "~/Library/Logs/Mark",
   ]
 end
