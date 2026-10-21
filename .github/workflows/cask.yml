@@ -1,0 +1,48 @@
+name: cask
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'Casks/**'
+      - '.github/workflows/cask.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'Casks/**'
+      - '.github/workflows/cask.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cask-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: cask/validate
+    runs-on: macos-14
+    timeout-minutes: 20
+    steps:
+      - name: checkout exact candidate
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: validate casks and published artifacts
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: '1'
+          HOMEBREW_NO_INSTALL_CLEANUP: '1'
+        run: |
+          set -euo pipefail
+          brew tap --custom-remote xronocode/mark "$GITHUB_WORKSPACE"
+          brew style Casks/mark.rb Casks/mark@alpha.rb
+          # The tap intentionally owns the `mark` cask while homebrew/core owns
+          # an unrelated `mark` formula. Keep every other strict/online audit.
+          brew audit --cask --strict --online --except=token_conflicts --os=macos --arch=arm \
+            xronocode/mark/mark xronocode/mark/mark@alpha
+          brew fetch --cask --force xronocode/mark/mark
+          brew fetch --cask --force xronocode/mark/mark@alpha

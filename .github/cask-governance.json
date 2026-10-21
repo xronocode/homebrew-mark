@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0.0",
+  "repository": "xronocode/homebrew-mark",
+  "autoMerge": true,
+  "defaultBranch": "main",
+  "auditExceptions": ["token_conflicts"],
+  "ruleset": {
+    "name": "homebrew-mark-main-protection",
+    "target": "branch",
+    "enforcement": "active",
+    "include": ["refs/heads/main"],
+    "requirePullRequest": true,
+    "requiredChecks": [
+      { "context": "cask/validate", "integrationId": 15368 }
+    ],
+    "strictRequiredChecks": true,
+    "blockForcePush": true,
+    "blockDelete": true
+  }
+}
