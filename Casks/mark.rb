@@ -1,6 +1,6 @@
 cask "mark" do
-  version "2.8.0"
-  sha256 "4d3d8f4c5a61632c72c87c7a3085e5b03df2b9587f7d6d72d10f481cf16b2148"
+  version "2.8.1"
+  sha256 "45bba4a96347912b75e87fbfd4f63824ee42147c3e59dd9b09c73e3265649a62"
 
   url "https://github.com/xronocode/mark/releases/download/v#{version}/Mark_#{version}_aarch64.dmg"
   name "Mark"
