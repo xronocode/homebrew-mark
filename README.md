@@ -21,18 +21,11 @@ brew upgrade --cask mark
 Intel macOS is not supported by the current cask. Windows installers are
 published directly on the Mark GitHub releases page.
 
-## Channels
-
-| Cask | Status |
-|---|---|
-| `mark` | Current stable release |
-| `mark@alpha` | Historical Tauri alpha channel; retained for explicit legacy installs |
-
 ## Release automation
 
 The protected Mark release workflow opens an exact cask bump pull request
 using the release GitHub App. This tap runs the required `cask/validate`
-check over both casks, including Homebrew style, strict online audit, artifact
+check over the cask, including Homebrew style, strict online audit, artifact
 download, and checksum verification. The bot-generated pull request is
 eligible for squash auto-merge only after that required check succeeds.
 

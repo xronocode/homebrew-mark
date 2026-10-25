@@ -42,10 +42,9 @@ jobs:
         run: |
           set -euo pipefail
           brew tap --custom-remote xronocode/mark "$GITHUB_WORKSPACE"
-          brew style Casks/mark.rb Casks/mark@alpha.rb
+          brew style Casks/mark.rb
           # The tap intentionally owns the `mark` cask while homebrew/core owns
           # an unrelated `mark` formula. Keep every other strict/online audit.
           brew audit --cask --strict --online --except=token_conflicts --os=macos --arch=arm \
-            xronocode/mark/mark xronocode/mark/mark@alpha
+            xronocode/mark/mark
           brew fetch --cask --force xronocode/mark/mark
-          brew fetch --cask --force xronocode/mark/mark@alpha
